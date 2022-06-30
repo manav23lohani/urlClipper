@@ -19,11 +19,11 @@
           <input required placeholder="Paste your URL here" type="url" name="fullUrl" id="fullUrl">
           <input type="submit" value="Shrink URL">
           <%}%>
-        <% if(locals.copyurl) {%>
-            <textarea readonly><%=process.env.HOST_NAME%><%=copyurl%></textarea>
-            <button class="copyurl">Copy URL</button>
-        <%}%>
       </form>
+      <% if(locals.copyurl) {%>
+        <textarea id="content" readonly><%=process.env.HOST_NAME%><%=copyurl%></textarea>
+        <input type="button" id="copy" value="Copy URL" />
+    <%}%>
       <p class="boxtextcenter">URL Clipper is a free tool to shorten a URL or reduce a link</p>
     </section>
   </div>
@@ -32,10 +32,20 @@
     <p class="paragraph_dark_center"><b>URL Clipper</b> for transforming long, ugly links into nice,
       memorable and trackable short URLs. Use it to shorten links for any social media platforms, blogs, SMS,
       emails, ads, or pretty much anywhere else you want to share them. After shorterning the URL, <a
-        href="/stats/index.html">check how many clicks it
+        href="#">check how many clicks it
         received</a>
     </p>
   </div>
+  <script>
+    const btn = document.getElementById("copy");
+    const inp = document.getElementById("content");
+
+    btn.addEventListener("click",function(e){
+      e.preventDefault();
+      inp.select();
+      document.execCommand("copy");
+    });
+  </script>
 </body>
 
 </html>
