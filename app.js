@@ -19,8 +19,8 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/shortUrls', async (req, res) => {
-  await ShortUrl.create({ full: req.body.fullUrl })
-  res.redirect('/')
+  const copyurl = await ShortUrl.create({ full: req.body.fullUrl })
+  res.render('index', {copyurl:copyurl.short})
 })
 
 app.get('/:shortUrl', async (req, res) => {

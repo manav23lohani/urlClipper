@@ -15,8 +15,14 @@
     <section class="urlbox">
       <h1>Enter the URL to be clipped</h1>
       <form action="/shortUrls" method="POST">
-        <input required placeholder="Paste your URL here" type="url" name="fullUrl" id="fullUrl">
-        <input type="submit" value="Shrink URL">
+        <% if(!locals.copyurl) { %>
+          <input required placeholder="Paste your URL here" type="url" name="fullUrl" id="fullUrl">
+          <input type="submit" value="Shrink URL">
+          <%}%>
+        <% if(locals.copyurl) {%>
+            <textarea readonly><%=process.env.HOST_NAME%><%=copyurl%></textarea>
+            <button class="copyurl">Copy URL</button>
+        <%}%>
       </form>
       <p class="boxtextcenter">URL Clipper is a free tool to shorten a URL or reduce a link</p>
     </section>

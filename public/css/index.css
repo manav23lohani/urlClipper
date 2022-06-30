@@ -25,7 +25,8 @@
     background: #fff;
     text-align: center;
 }
-form input[type=url] {
+form input[type=url], textarea{
+    resize: none;
     width: 100%;
     height: 50px;
     padding: 10px 16px;
@@ -35,7 +36,7 @@ form input[type=url] {
     border: 1px solid #bbb;
     border-radius: 3px;
 }
-form input[type=submit] {
+form input[type=submit],.copyurl{
     height: 45px;
     padding: 10px 16px;
     margin-top: 15px;
