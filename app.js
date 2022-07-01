@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/urlData')
+const qr = require('qrcode')
 require('dotenv').config()
 const app = express()
 
@@ -14,13 +15,13 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/', async (req, res) => {
-  const shortUrls = await ShortUrl.find()
-  res.render('index', { shortUrls: shortUrls })
+  res.render('index')
 })
 
 app.post('/shortUrls', async (req, res) => {
   const copyurl = await ShortUrl.create({ full: req.body.fullUrl })
-  res.render('index', {copyurl:copyurl.short})
+  const generatedQR = await qr.toDataURL(copyurl.full)
+  res.render('index', {copyurl:copyurl.short, src:generatedQR})
 })
 
 app.get('/:shortUrl', async (req, res) => {
