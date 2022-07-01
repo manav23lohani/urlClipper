@@ -18,20 +18,16 @@ app.get('/', async (req, res) => {
   res.render('index')
 })
 
-app.post('/shortUrls', async (req, res) => {
+app.post('/clipUrl', async (req, res) => {
   const copyurl = await ShortUrl.create({ full: req.body.fullUrl })
   const generatedQR = await qr.toDataURL(copyurl.full)
   res.render('index', {copyurl:copyurl.short, src:generatedQR})
 })
 
-app.get('/:shortUrl', async (req, res) => {
-  const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
-  if (shortUrl == null) return res.sendStatus(404)
-
-  shortUrl.clicks++
-  shortUrl.save()
-
-  res.redirect(shortUrl.full)
+app.get('/:clippedUrl', async (req, res) => {
+  const clippedUrl = await ShortUrl.findOne({ short: req.params.clippedUrl })
+  if (clippedUrl == null) return res.sendStatus(404)
+  res.redirect(clippedUrl.full)
 })
 
 app.listen(process.env.PORT);

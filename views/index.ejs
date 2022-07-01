@@ -15,7 +15,7 @@
     <section class="urlbox">
       <% if(!locals.copyurl) { %>
       <h1>Enter the URL to be clipped</h1>
-      <form action="/shortUrls" method="POST">
+      <form action="/clipUrl" method="POST">
           <input required placeholder="Paste your URL here" type="url" name="fullUrl" id="fullUrl">
           <input type="submit" value="Shrink URL">
       </form>
@@ -32,12 +32,9 @@
   </div>
   <div class="info">
     <h2>A fast and simple URL shortener</h2>
-    <p class="paragraph_dark_center"><b>URL Clipper</b> for transforming long, ugly links into nice,
-      memorable and trackable short URLs. Use it to shorten links for any social media platforms, blogs, SMS,
-      emails, ads, or pretty much anywhere else you want to share them. After shorterning the URL, <a
-        href="#">check how many clicks it
-        received</a>
-    </p>
+    <p class="paragraph_dark_center"><b>URL Clipper</b> for transforming long, ugly links into tiny and
+      memorable short URLs. Use it to shorten links or create QR code for any social media platforms, blogs, SMS,
+      emails, ads, or pretty much anywhere else you want to share them.</p>
   </div>
   <script>
     const btn = document.getElementById("copy");
