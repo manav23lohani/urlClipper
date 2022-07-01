@@ -13,14 +13,15 @@
   <div class="container">
     <h1 class="heading">URL Clipper</h1>
     <section class="urlbox">
+      <% if(!locals.copyurl) { %>
       <h1>Enter the URL to be clipped</h1>
       <form action="/shortUrls" method="POST">
-        <% if(!locals.copyurl) { %>
           <input required placeholder="Paste your URL here" type="url" name="fullUrl" id="fullUrl">
           <input type="submit" value="Shrink URL">
-          <%}%>
       </form>
+      <%}%>
       <% if(locals.copyurl) {%>
+        <h1>Generated short URL is ready</h1>
         <textarea id="content" readonly><%=process.env.HOST_NAME%><%=copyurl%></textarea>
         <input type="button" id="copy" value="Copy URL" />
     <%}%>
